@@ -32,11 +32,24 @@
           class="px-4 py-2"
           [ngClass]="{
             'text-indigo-600  border-b-2 border-indigo-500':
+              selectedTab === 'Reviews',
+            'text-gray-600 hover:text-gray-800': selectedTab !== 'Reviews'
+          }"
+          (click)="selectTab('Reviews')"
+          routerLink="review"
+        >
+          Reviews
+        </button>
+
+        <button
+          class="px-4 py-2"
+          [ngClass]="{
+            'text-indigo-600  border-b-2 border-indigo-500':
               selectedTab === 'Genres',
             'text-gray-600 hover:text-gray-800': selectedTab !== 'Genres'
           }"
           (click)="selectTab('Genres')"
-          routerLink="board"
+          routerLink="genres"
         >
           Genres
         </button>
@@ -49,7 +62,7 @@
             'text-gray-600 hover:text-gray-800': selectedTab !== 'Book Clubs'
           }"
           (click)="selectTab('Book Clubs')"
-          routerLink="board"
+          routerLink="book-clubs"
         >
           Book Clubs
         </button>
@@ -62,22 +75,9 @@
             'text-gray-600 hover:text-gray-800': selectedTab !== 'Authors'
           }"
           (click)="selectTab('Authors')"
-          routerLink="board"
+          routerLink="authors"
         >
           Authors
-        </button>
-
-        <button
-          class="px-4 py-2"
-          [ngClass]="{
-            'text-indigo-600  border-b-2 border-indigo-500':
-              selectedTab === 'Reviews',
-            'text-gray-600 hover:text-gray-800': selectedTab !== 'Reviews'
-          }"
-          (click)="selectTab('Reviews')"
-          routerLink="board"
-        >
-          Reviews
         </button>
 
         <button
@@ -88,7 +88,7 @@
             'text-gray-600 hover:text-gray-800': selectedTab !== 'About Us'
           }"
           (click)="selectTab('About Us')"
-          routerLink="board"
+          routerLink="about"
         >
           About Us
         </button>
@@ -116,7 +116,7 @@
         <!-- Search Input -->
         <input
           type="text"
-          placeholder="Search for books..."
+          placeholder="Explore books..."
           class="absolute right-0 top-0 mt-1 opacity-0 group-hover:opacity-100 group-hover:visible invisible w-0 group-hover:w-[250px] border border-gray-300 rounded-lg px-2 py-2 p-2 text-sm transition-all duration-200 focus:ring-1 focus:ring-indigo-500 focus:outline-none"
         />
       </div>
@@ -153,12 +153,12 @@
           id="user-dropdown"
         >
           <div class="px-4 py-3">
-            <span class="block text-sm text-gray-900 dark:text-white"
-              >John Smith</span
-            >
+            <span class="block text-sm text-gray-900 dark:text-white">{{
+              currentUser?.firstName + " " + currentUser?.lastName
+            }}</span>
             <span
               class="block text-sm text-gray-500 truncate dark:text-gray-400 overflow-hidden"
-              >johnsmith.gmail.com</span
+              >{{ currentUser?.email }}</span
             >
           </div>
           <ul class="py-2" aria-labelledby="user-menu-button">
@@ -166,7 +166,7 @@
               <a
                 href="#"
                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                >Dashboard</a
+                >Home</a
               >
             </li>
             <li>
@@ -185,8 +185,8 @@
             </li>
             <li>
               <a
-                href="#"
-                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                (click)="onLogout()"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white cursor-pointer"
                 >Sign out</a
               >
             </li>

@@ -3,11 +3,12 @@ import { NavBarComponent } from '../../shared/nav-bar/nav-bar.component';
 import { AlertComponent } from '../../shared/alert/alert.component';
 import { Alert, AlertService } from '../../shared/services/alert.service';
 import { CommonModule } from '@angular/common';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [NavBarComponent, AlertComponent, CommonModule],
+  imports: [NavBarComponent, AlertComponent, RouterOutlet, CommonModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
 })
