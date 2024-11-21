@@ -43,8 +43,9 @@ export class ReviewService {
       );
   }
 
-  async deleteReview(id: number): Promise<Observable<boolean>> {
-    return this.http
+  async deleteReview(id: number): Promise<boolean> {
+    return firstValueFrom(
+      this.http
       .delete<boolean>(`${this.API_URL}/${id}`, {
         responseType: 'json',
         headers: new HttpHeaders({
@@ -55,7 +56,8 @@ export class ReviewService {
         tap((response) => {
           console.log(response);
         })
-      );
+      )
+    );
   }
 
   async updateReview(
