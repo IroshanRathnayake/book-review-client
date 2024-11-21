@@ -40,7 +40,7 @@ export class AuthService {
       .pipe(
         tap((response) => {
           Cookies.set('token', response.token, { expires: 1 / 24 });
-          localStorage.setItem('user', JSON.stringify(response));
+          localStorage.setItem('user', JSON.stringify(response.user));
           this.currentUserSubject.next(response.user);
           sessionStorage.setItem('oneTimeData', 'false');
         })
