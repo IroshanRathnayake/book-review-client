@@ -1,1 +1,5 @@
-<p>dashboard works!</p>
+<div class="alerts-container mt-3">
+  <app-alert *ngFor="let alert of alerts" [alert]="alert"></app-alert>
+</div>
+
+<app-nav-bar></app-nav-bar>

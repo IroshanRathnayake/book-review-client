@@ -1,1 +1,215 @@
-<p>nav-bar works!</p>
+<header class="bg-white p-3">
+  <nav
+    class="flex justify-between items-center w-[92%] mx-auto transition duration-300"
+  >
+    <div class="text-xl font-bold cursor-pointer" routerLink="/">
+      Book Review.
+    </div>
+    <div
+      class="nav-links duration-500 md:static absolute bg-white md:min-h-fit min-h-[60vh] left-0 top-[-100%] md:w-auto w-full flex items-center px-5 z-10 justify-center"
+      [ngClass]="{
+        'top-[9%] justify-end': isMenuOpen,
+        'top-[-100%] justify-end': !isMenuOpen
+      }"
+    >
+      <ul
+        class="flex md:flex-row flex-col md:items-center md:gap-[2.5vw] gap-8 cursor-pointer"
+      >
+        <button
+          class="px-4 py-2 flex"
+          [ngClass]="{
+            'text-indigo-600  border-b-2 border-indigo-500':
+              selectedTab === 'Top Books',
+            'text-gray-600 hover:text-gray-800': selectedTab !== 'Top Books'
+          }"
+          (click)="selectTab('Top Books')"
+          routerLink="/dashboard"
+        >
+          Top Books
+        </button>
+
+        <button
+          class="px-4 py-2"
+          [ngClass]="{
+            'text-indigo-600  border-b-2 border-indigo-500':
+              selectedTab === 'Genres',
+            'text-gray-600 hover:text-gray-800': selectedTab !== 'Genres'
+          }"
+          (click)="selectTab('Genres')"
+          routerLink="board"
+        >
+          Genres
+        </button>
+
+        <button
+          class="px-4 py-2"
+          [ngClass]="{
+            'text-indigo-600  border-b-2 border-indigo-500':
+              selectedTab === 'Book Clubs',
+            'text-gray-600 hover:text-gray-800': selectedTab !== 'Book Clubs'
+          }"
+          (click)="selectTab('Book Clubs')"
+          routerLink="board"
+        >
+          Book Clubs
+        </button>
+
+        <button
+          class="px-4 py-2"
+          [ngClass]="{
+            'text-indigo-600  border-b-2 border-indigo-500':
+              selectedTab === 'Authors',
+            'text-gray-600 hover:text-gray-800': selectedTab !== 'Authors'
+          }"
+          (click)="selectTab('Authors')"
+          routerLink="board"
+        >
+          Authors
+        </button>
+
+        <button
+          class="px-4 py-2"
+          [ngClass]="{
+            'text-indigo-600  border-b-2 border-indigo-500':
+              selectedTab === 'Reviews',
+            'text-gray-600 hover:text-gray-800': selectedTab !== 'Reviews'
+          }"
+          (click)="selectTab('Reviews')"
+          routerLink="board"
+        >
+          Reviews
+        </button>
+
+        <button
+          class="px-4 py-2"
+          [ngClass]="{
+            'text-indigo-600  border-b-2 border-indigo-500':
+              selectedTab === 'About Us',
+            'text-gray-600 hover:text-gray-800': selectedTab !== 'About Us'
+          }"
+          (click)="selectTab('About Us')"
+          routerLink="board"
+        >
+          About Us
+        </button>
+      </ul>
+    </div>
+    <div class="flex items-center gap-5">
+      <div class="flex items-center gap-5 relative group">
+        <!-- Search Icon -->
+        <button class="p-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
+          </svg>
+        </button>
+        <!-- Search Input -->
+        <input
+          type="text"
+          placeholder="Search for books..."
+          class="absolute right-0 top-0 mt-1 opacity-0 group-hover:opacity-100 group-hover:visible invisible w-0 group-hover:w-[250px] border border-gray-300 rounded-lg px-2 py-2 p-2 text-sm transition-all duration-200 focus:ring-1 focus:ring-indigo-500 focus:outline-none"
+        />
+      </div>
+
+      <!-- Profile -->
+      <div
+        class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse"
+      >
+        <button
+          type="button"
+          class="flex text-sm bg-none rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+          id="user-menu-button"
+          aria-expanded="false"
+          data-dropdown-toggle="user-dropdown"
+          data-dropdown-placement="bottom"
+        >
+          <span class="sr-only">Open user menu</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            class="w-8 h-8"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </button>
+        <!-- Dropdown menu -->
+        <div
+          class="z-50 hidden my-4 text-base list-none bg-white divide-y w-[180px] divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
+          id="user-dropdown"
+        >
+          <div class="px-4 py-3">
+            <span class="block text-sm text-gray-900 dark:text-white"
+              >John Smith</span
+            >
+            <span
+              class="block text-sm text-gray-500 truncate dark:text-gray-400 overflow-hidden"
+              >johnsmith.gmail.com</span
+            >
+          </div>
+          <ul class="py-2" aria-labelledby="user-menu-button">
+            <li>
+              <a
+                href="#"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                >Dashboard</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                >Settings</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                >Profile</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                >Sign out</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <button (click)="onToggleMenu()" class="md:hidden lg:hidden">
+        <svg
+          class="w-5 h-5"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 17 14"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M1 1h15M1 7h15M1 13h15"
+          />
+        </svg>
+      </button>
+    </div>
+  </nav>
+</header>
